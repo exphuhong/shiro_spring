@@ -1,5 +1,9 @@
 package com.IFox.shiro.bean.control;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,9 +17,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LogonAction {
     @RequestMapping("/logon")
     public String logon(@RequestParam("username") String username, @RequestParam("password") String password) {
-        if (username.equals("tom") && password.equals("123456")) {
-            return "success";
+        //创建Subject实例
+        Subject currentUser = SecurityUtils.getSubject();
+
+        //判断当前用户是否已经登录
+        if (!currentUser.isAuthenticated()) {
+            //将用户名以及密码封装
+            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+
+            try {
+                currentUser.login(token);
+            } catch (AuthenticationException e) {
+                System.out.println("登录失败");
+                return "error";
+            }
         }
-        return "error";
+        return "success";
     }
 }

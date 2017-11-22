@@ -17,8 +17,8 @@
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.5" />
-          <element id="library" level="project" name="Maven: org.ehcache:ehcache:3.4.0" />
           <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache:2.10.4" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
         </element>
       </element>
     </root>

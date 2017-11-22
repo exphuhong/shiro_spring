@@ -1,0 +1,17 @@
+Spring MVC控制器：处理用户请求
+    －　获取用户输入的登录消息
+
+    －shiro　API来完成用户的认证
+    1、获取Subject类型的实例
+        Subject currentUser = SecurityUtils.getSubject()
+
+    2、判断用户是否已经登录
+        currentUser.isAuthenticated()
+
+    3、使用UsernamePasswordToken对象封装用户名及密码
+        UsernamePasswordToken token = new UsernamePasswordToken("","")
+
+    4、使用Subject实例中的login(token)
+        currentUser.login(token)
+
+    5、Relam从数据库中获取安全数据

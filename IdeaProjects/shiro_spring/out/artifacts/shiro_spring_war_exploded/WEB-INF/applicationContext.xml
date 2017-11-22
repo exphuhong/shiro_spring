@@ -83,7 +83,10 @@
         <property name="filterChainDefinitions">
             <value>
                 /index = anon
+                <!--只能匹配一个字符-->
                 /admin?.jsp = anon
+                <!--可以匹配多个字符-->
+                /admin*.jsp = anon
 
                 /** = authc
             </value>

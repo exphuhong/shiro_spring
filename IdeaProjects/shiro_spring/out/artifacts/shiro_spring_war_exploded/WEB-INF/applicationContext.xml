@@ -88,6 +88,8 @@
                 <!--可以匹配多个字符-->
                 /admin*.jsp = anon
 
+                /logon = anon
+
                 /** = authc
             </value>
         </property>

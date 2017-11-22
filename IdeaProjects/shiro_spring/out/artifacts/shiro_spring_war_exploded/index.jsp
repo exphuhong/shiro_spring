@@ -12,5 +12,10 @@
   </head>
   <body>
   <h2>logon.jsp</h2>
+  <form action="logon">
+    username: <input type="text" name="username"><br>
+    password: <input type="text" name="password"><br>
+    <input type="submit"value="Submit">
+  </form>
   </body>
 </html>

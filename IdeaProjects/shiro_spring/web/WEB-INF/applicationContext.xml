@@ -83,8 +83,8 @@
         <property name="filterChainDefinitions">
             <value>
                 /index = anon
+                /admin?.jsp = anon
 
-                
                 /** = authc
             </value>
         </property>

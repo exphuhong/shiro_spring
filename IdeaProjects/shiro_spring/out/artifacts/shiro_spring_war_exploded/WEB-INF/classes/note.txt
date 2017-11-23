@@ -31,3 +31,10 @@ Shiro 底层进行密码比对：用户输入值进行MD5的加密
 可以通过Realm属性
     Spring Ioc 配置文件中完成
     加密器: credetialsMacher:HashedcredetialsMacher ,创建实例的时候注入算法名称，加密的次数
+
+盐值加密：原有算法加密的基础上
+１、前端token当中获取的密码应该进行盐值加密
+realm方法返回的对象，调用下面这个构造。
+new SimpleAuthenticationInfo(principal,sh,salt,realmName);
+2、数据库这边
+

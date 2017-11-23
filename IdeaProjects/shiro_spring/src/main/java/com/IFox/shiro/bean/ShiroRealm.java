@@ -5,6 +5,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 import java.sql.*;
 
@@ -42,9 +43,12 @@ public class ShiroRealm extends AuthorizingRealm{
             if (resultSet.next()) {
                 Object principal = userName;
                 Object credentials = resultSet.getString(3);
-                SimpleHash sh = new SimpleHash("MD5", credentials, null,1024);
+                //将数据库中的密码进行MD5加密
+                ByteSource salt = ByteSource.Util.bytes(userName);
+                SimpleHash sh = new SimpleHash("MD5", credentials, salt,1024);
                 String realmName = this.getName();
-                info = new SimpleAuthenticationInfo(principal,sh,realmName);
+               // info = new SimpleAuthenticationInfo(principal,sh,realmName);
+                info = new SimpleAuthenticationInfo(principal, sh, salt, realmName);
 
             } else {
                 throw new AuthenticationException();

@@ -15,3 +15,19 @@ Spring MVC控制器：处理用户请求
         currentUser.login(token)
 
     5、Relam从数据库中获取安全数据
+
+进行密码比对：shiro帮我们完成
+用户输入的内容，UsernamePasswordToken
+SimpleAuthenticationInfo封装了查询之后的结果
+
+
+------------------------------------------
+加密：MD5、SHA1两种方式加密
+1、存储数据的时候，用户输入的明文进行加密，Hibernate当中涉及Md5的操作
+
+2、前端用户输入的值，进行加密，String类型的字符串经过MD5加密的得到的一个值
+
+Shiro 底层进行密码比对：用户输入值进行MD5的加密
+可以通过Realm属性
+    Spring Ioc 配置文件中完成
+    加密器: credetialsMacher:HashedcredetialsMacher ,创建实例的时候注入算法名称，加密的次数

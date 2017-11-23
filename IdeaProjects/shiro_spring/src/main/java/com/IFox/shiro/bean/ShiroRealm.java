@@ -2,6 +2,7 @@ package com.IFox.shiro.bean;
 
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
@@ -41,9 +42,9 @@ public class ShiroRealm extends AuthorizingRealm{
             if (resultSet.next()) {
                 Object principal = userName;
                 Object credentials = resultSet.getString(3);
+                SimpleHash sh = new SimpleHash("MD5", credentials, null,1024);
                 String realmName = this.getName();
-                info = new SimpleAuthenticationInfo(principal,credentials,realmName);
-
+                info = new SimpleAuthenticationInfo(principal,sh,realmName);
 
             } else {
                 throw new AuthenticationException();

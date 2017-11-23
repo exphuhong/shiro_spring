@@ -12,5 +12,7 @@
 </head>
 <body>
     <h2>登录成功</h2>
+    <a href="logout">logout</a>
+    <a href="/check">check</a>
 </body>
 </html>

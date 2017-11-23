@@ -34,4 +34,13 @@ public class LogonAction {
         }
         return "success";
     }
+    @RequestMapping("/check")
+    public String check() {
+        Subject current = SecurityUtils.getSubject();
+        if (current.isAuthenticated()) {
+            return "admin1";
+        } else {
+            return "admin123";
+        }
+    }
 }

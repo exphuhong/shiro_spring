@@ -17,16 +17,21 @@
     </bean>
 
     <bean id="jdbcRealm" class="com.IFox.shiro.bean.ShiroRealm">
+        <property name="cachingEnabled" value="true"/>
+        <property name="authenticationCachingEnabled" value="true"/>
+        <property name="authenticationCacheName" value="authenticationCache"/>
+        <property name="authorizationCachingEnabled" value="true"/>
+        <property name="authorizationCacheName" value="authorizationCache"/>
     </bean>
 
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
-        <property name="sessionIdCookieEnabled" value="false"/>
+        <property name="sessionIdCookieEnabled" value="true"/>
     </bean>
 
     <!--缓存管理器-->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-
         <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
+
     </bean>
 
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
@@ -61,7 +66,8 @@
                 /admin*.jsp = anon
 
                 /logon = anon
-
+                /logout = logout
+                /check = anon
                 /** = authc
             </value>
         </property>

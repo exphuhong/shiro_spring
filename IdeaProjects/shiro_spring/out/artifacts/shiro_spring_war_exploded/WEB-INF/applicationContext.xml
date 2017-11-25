@@ -15,6 +15,18 @@
         <property name="realm" ref="jdbcRealm"/>
         <property name="sessionManager" ref="sessionManager"/>
     </bean>
+<!--
+
+    <bean class="org.apache.shiro.authc.pam.ModularRealmAuthenticator" id="authenticator">
+        <property name="realms">
+            <list>
+                <ref bean="jdbcRealm"/>
+            </list>
+        </property>
+        <property name="authenticationStrategy" ref="allSuccessfulStrategy"/>
+    </bean>
+    <bean class="org.apache.shiro.authc.pam.AllSuccessfulStrategy" id="allSuccessfulStrategy"/>
+-->
 
     <bean id="jdbcRealm" class="com.IFox.shiro.bean.ShiroRealm">
         <property name="cachingEnabled" value="true"/>
@@ -67,15 +79,16 @@
         <!-- authc 需要经过认证-->
         <property name="filterChainDefinitions">
             <value>
-                /index = anon
-                <!--只能匹配一个字符-->
+                /index = anon<!--
+                &lt;!&ndash;只能匹配一个字符&ndash;&gt;
                 /admin?.jsp = anon
-                <!--可以匹配多个字符-->
-                /admin*.jsp = anon
+                &lt;!&ndash;可以匹配多个字符&ndash;&gt;
+                /admin*.jsp = anon-->
 
                 /logon = anon
                 /logout = logout
                 /check = anon
+                /admin1.jsp = roles[admin]
                 /** = authc
             </value>
         </property>

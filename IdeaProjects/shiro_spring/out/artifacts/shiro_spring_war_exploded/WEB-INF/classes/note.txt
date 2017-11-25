@@ -38,3 +38,35 @@ realm方法返回的对象，调用下面这个构造。
 new SimpleAuthenticationInfo(principal,sh,salt,realmName);
 2、数据库这边
 
+
+
+
+多realm获取数据
+为什么要使用？
+第一种方式
+１、书写多个Realm实现类
+
+２、SpringIOC容器中完成相应的bean的设置
+
+３、securityManager的bean中设置一个realms，并且通过集合对象完成属性的注入。
+
+第二种方式
+
+１、需要配置一个认证器，ModularRealmAuthenticator
+
+２、bean的realms属性完成注入
+        ModularRealmAuthenticator:realm完成属性的注入
+３、securityManager当中注入一个authenticator属性，告知安全管理器，我使用的具体的认证器策略
+
+
+授权：控制哪一个用户可以访问哪一个web资源
+
+主体：Subject,用户
+
+资源:可以访问访问的URL
+
+权限:
+
+角色:包含了多个权限
+
+

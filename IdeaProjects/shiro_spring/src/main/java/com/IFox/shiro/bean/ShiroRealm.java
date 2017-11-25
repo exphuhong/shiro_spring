@@ -63,8 +63,12 @@ public class ShiroRealm extends AuthorizingRealm{
         return info;
     }
 
+    /**
+     * 授权
+     * */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+
         return null;
     }
 }
